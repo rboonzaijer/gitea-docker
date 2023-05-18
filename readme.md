@@ -54,6 +54,33 @@ This will shut down the container, restore (overwrite!) the backup files into th
 ./volumes_restore.sh ./../my_backup_dir/
 ```
 
+## Auto-Backup Example
+
+Create a 'backup_gitea.sh' file in your home directory, with this content:
+```
+cd /home/roel/gitea-docker && ./volumes_backup.sh /mnt/nas_gitea/
+```
+
+Make it executable:
+```
+chmod +x backup_gitea.sh
+```
+
+Run backup script every day at 05:00 AM
+```
+sudo crontab -e
+
+0 5 * * * /home/roel/gitea-docker/backup_gitea.sh
+```
+
+
+Run it directly with:
+```
+./backup_gitea.sh
+```
+
+
+
 # 5. Update gitea version
 
 First, set the new version number in 'docker-compose.yml'.
